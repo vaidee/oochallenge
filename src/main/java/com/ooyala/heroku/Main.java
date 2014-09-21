@@ -3,6 +3,11 @@ package com.ooyala.heroku;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
+import com.ooyala.resources.LastMovie;
+import com.ooyala.resources.OoPlayer;
+
+
+
 /**
  * This class launches the web application in an embedded Jetty container. This is the entry point to your application. The Java
  * command that is used for launching should fire this main method.
@@ -10,6 +15,15 @@ import org.eclipse.jetty.webapp.WebAppContext;
 public class Main {
 
     public static void main(String[] args) throws Exception{
+    	
+    	/*LastMovie lastmovie = new LastMovie();
+    	
+        OoPlayer oplayer = new OoPlayer();
+        System.out.println("main method **");
+        System.out.println(lastmovie.getLastMovie());
+        System.out.println(oplayer.getAllPlayers());*/
+    	
+    	
         // The port that we should run on can be set into an environment variable
         // Look for that variable and default to 8080 if it isn't there.
         String webPort = System.getenv("PORT");
@@ -35,6 +49,7 @@ public class Main {
         server.setHandler(root);
 
         server.start();
-        server.join();
+        server.join();       
+        
     }
 }

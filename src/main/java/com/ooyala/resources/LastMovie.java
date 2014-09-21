@@ -1,4 +1,4 @@
-package com.ooyala;
+package com.ooyala.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -8,8 +8,8 @@ import javax.ws.rs.core.MediaType;
 /**
  * Root resource (exposed at "breakme" path)
  */
-@Path("recentmovie")
-public class RecentMovie {
+@Path("lastmovie")
+public class LastMovie {
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -19,7 +19,7 @@ public class RecentMovie {
      */
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String getRecentMovie() {
-        return "dragons2";
+    public String getLastMovie() {
+        return "peabody and sherman";
     }
 }
