@@ -30,7 +30,7 @@ public class OoPlayer {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public JSONObject getAllPlayers() {
+    public Object getAllPlayers() {
     	
     	JSONObject jsonresponse = null;
     	Object response = null;
@@ -40,7 +40,7 @@ public class OoPlayer {
     	try {
     	String requestPath = "/players";
     	HashMap<String, String> parameters = new HashMap<String, String>();
-    	jsonresponse = (JSONObject) ooyalaapi.sendRequest("GET", requestPath);
+    	response = ooyalaapi.sendRequest("GET", requestPath);
     	} catch (ClientProtocolException e) {
     		System.out.println("ClientProtocolException occured");
     	} catch (NoSuchAlgorithmException e) {
@@ -51,9 +51,9 @@ public class OoPlayer {
     		System.out.println("HttpStatusCodeException occured");
     	}
     	
-    	System.out.println("response is " + jsonresponse.toString());
+    	System.out.println("response is " + response.toString());
     	//jsonresponse.
-        return jsonresponse;
+        return response;
     }
     
     
