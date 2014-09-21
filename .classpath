@@ -23,12 +23,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Vaidee/Work/workspace/ooyala/java-v2-sdk/lib/commons-codec-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Vaidee/Work/workspace/ooyala/java-v2-sdk/lib/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Vaidee/Work/workspace/ooyala/java-v2-sdk/lib/httpclient-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Vaidee/Work/workspace/ooyala/java-v2-sdk/lib/httpclient-cache-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Vaidee/Work/workspace/ooyala/java-v2-sdk/lib/httpcore-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Vaidee/Work/workspace/ooyala/java-v2-sdk/lib/httpmime-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Vaidee/Work/workspace/ooyala/java-v2-sdk/lib/json_simple-1.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
