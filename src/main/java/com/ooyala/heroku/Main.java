@@ -49,7 +49,7 @@ public class Main {
         server.setHandler(root);
 
         server.start();
-        server.join();       
-        
+        server.join();
+              
     }
 }

@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.http.client.ClientProtocolException;
+import org.json.simple.JSONObject;
 
 
 /**
@@ -29,8 +30,9 @@ public class OoPlayer {
      */
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String getAllPlayers() {
+    public JSONObject getAllPlayers() {
     	
+    	JSONObject jsonresponse = null;
     	Object response = null;
     	OoyalaAPI ooyalaapi = null;
     	ooyalaapi = new OoyalaAPI("NoNTgyOnzfsCuyuMHS3_U_x9R8Jy.T9zcm","rqyh7up7Cy6E8c8y9PFZbzh-gtzNm0eZ-YUvukM7"); 
@@ -38,7 +40,7 @@ public class OoPlayer {
     	try {
     	String requestPath = "/players";
     	HashMap<String, String> parameters = new HashMap<String, String>();
-    	response = ooyalaapi.sendRequest("GET", requestPath);
+    	jsonresponse = (JSONObject) ooyalaapi.sendRequest("GET", requestPath);
     	} catch (ClientProtocolException e) {
     		System.out.println("ClientProtocolException occured");
     	} catch (NoSuchAlgorithmException e) {
@@ -49,8 +51,9 @@ public class OoPlayer {
     		System.out.println("HttpStatusCodeException occured");
     	}
     	
-    	System.out.println("response is " + response.toString());
-        return "response";
+    	System.out.println("response is " + jsonresponse.toString());
+    	//jsonresponse.
+        return jsonresponse;
     }
     
     
