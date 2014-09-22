@@ -12,7 +12,7 @@
 </head>
 <body>
 	My Player V3 Content. // Layout for content elements to be fetched
-	<div id='playerwrapper' style='width: 480px; height: 360px;'></div>
+	<div id='playerwrapper' draggable="true" style='width: 480px; height: 360px;'></div>
 	<div id='metadata'>
 		-- Metadata --<br />
 	</div>
@@ -74,14 +74,14 @@
 		window.bitrateElement = getElement('bitrate'); 
 		window.metadataElement = getElement('metadata'); 
 		
-		OO.ready(function() { 
+		 OO.ready(function() { 
 			// Surround everything with OO.ready to make sure the script has 
 			// loaded and initialized completely 
-			window.player = OO.Player.create('playerwrapper','U2ZG9rcDrX08ZMI7Ju74Ey3be0jSbRtd', 
+			window.player = OO.Player.create('playerwrapper','U2ZG9rcDrX08ZMI7Ju74Ey3be0jSbRtd1', 
 					{ onCreate: window.onCreate, autoplay: true 
 				// Instead of calling object.play it is easier (and more robust) to set autoplay here 
 				}); 
-			}); 
+			});  
 		</script>
 </body>
 </html>

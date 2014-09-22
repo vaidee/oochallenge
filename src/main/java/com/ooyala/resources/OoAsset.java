@@ -17,8 +17,8 @@ import org.json.simple.JSONObject;
 /**
  * Root resource (exposed at "ooPlayer" path)
  */
-@Path("players")
-public class OoPlayer {
+@Path("assets")
+public class OoAsset {
 	
 	
 	/**
@@ -30,7 +30,7 @@ public class OoPlayer {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Object getAllPlayers() {
+    public Object getAllAssets() {
     	
     	JSONObject jsonresponse = null;
     	Object response = null;
@@ -38,7 +38,7 @@ public class OoPlayer {
     	ooyalaapi = new OoyalaAPI("NoNTgyOnzfsCuyuMHS3_U_x9R8Jy.T9zcm","rqyh7up7Cy6E8c8y9PFZbzh-gtzNm0eZ-YUvukM7"); 
     	
     	try {
-    	String requestPath = "/players";
+    	String requestPath = "/assets";
     	HashMap<String, String> parameters = new HashMap<String, String>();
     	response = ooyalaapi.sendRequest("GET", requestPath);
     	} catch (ClientProtocolException e) {
