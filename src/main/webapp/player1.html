@@ -68,14 +68,26 @@
 
     <!-- Page Content -->
     <div class="container" ng-controller="playerCtrl">
+        <div class"row">
+                <div class="col-lg-8">
 
 
         <!-- Jumbotron Header -->
-        <header class="jumbotron hero-spacer">
 
-            <div id="contenttitle" ng-model="contentTitle">{{contentTitle}}</div>
+        <header class="jumbotron hero-spacer">
+            <div class="input-group">      
+                <div class="input-group-addon">Title</div>
+                <input class="form-control" type="text" ng-model="contentTitle" ng-readonly="!checked">
+                <div class="input-group-addon" ng-hide="checked">
+                    <a href="" ng-click="checked=!checked">Edit title</a>
+                </div>    
+                <div class="input-group-addon" ng-show="checked">                        
+                    <a href="" ng-click="changeTitle(checked)">Done Editing?</a>               
+                </div>              
+            </div>
+            <br>
             <!-- My Player V3 Content. // Layout for content elements to be fetched -->
-            <div id='playerwrapper' draggable="true" style='width: 800px; height: 400px;'></div>
+            <div id='playerwrapper' draggable="true" style='width: 620px; height: 400px; border:2px solid black'></div>
             <div id='metadata'>
                 -- Metadata --<br />
             </div>
@@ -86,38 +98,29 @@
                 -- Buffer --<br />
             </div>
         </header>
-
-        <hr>
-
-        <!-- Title -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Featured Videos</h3>
-            </div>
         </div>
 
-        <!-- /.row -->
+
+
+
 
         <!-- Page Features -->
-        <div class="row text-center">
-            <div class="col-md-3 col-sm-6 hero-feature" ng-repeat="item in assets.items">
-                <div class="thumbnail">
-                    <img src="{{item.preview_image_url}}">
-                    <div class="caption">
+        <div class="col-md-4 hero-feature">
+            <h3>Featured Videos</h3>
+            <div class="videos" ng-repeat="item in assets.items">
+                <div class="thumbnail" ng-click="selectContent(item.embed_code)">
+                    <img src="{{item.preview_image_url}}" ng-click="loadVideo(item.name,item.description,item.embed_code)">
+                    <div ng-hide="true" class="caption">
                         <h3>{{item.name}}</h3>
                         <p>{{item.description}}</p>
                         <p>
-                            <button class="btn btn-primary" ng-click="playVideo(item.embed_code)">Play Now!</button> 
+                            <button class="btn btn-primary" ng-click="loadVideo(item.name,item.description,item.embed_code)">Play Now!</button> 
                             <button class="btn btn-primary" ng-click="destroyVideo()">Stop Now!</button>
                         </p>
                     </div>
                 </div>
             </div>
-
         </div>
-        <!-- /.row -->
-        <hr>
-
         <!-- Footer -->
         <footer>
             <div class="row">

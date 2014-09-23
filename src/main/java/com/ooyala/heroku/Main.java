@@ -3,8 +3,7 @@ package com.ooyala.heroku;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-import com.ooyala.resources.LastMovie;
-import com.ooyala.resources.OoPlayer;
+import com.ooyala.resources.OoAsset;
 
 
 
@@ -26,6 +25,10 @@ public class Main {
         System.out.println("main method **");
         System.out.println(lastmovie.getLastMovie());
         System.out.println(oplayer.getAllPlayers());*/
+    	
+    	/*OoAsset asset = new OoAsset();
+    	Object response = asset.UpdateAssetName("{\"name\":\"changednamed\"}");
+    	System.out.println(response.toString());*/
     	
     	
         // The port that we should run on can be set into an environment variable
