@@ -1,4 +1,5 @@
     function getElement(id) { return document.querySelector('#'+id); } 
+    var $globalTime = "";
     function onCreate(player) { 
         // Everything you do with the player should be done either in onCreate 
         // or as listeners on the message bus 
@@ -14,6 +15,33 @@
         player.subscribe("error", "test-plugin", function(eventName, payload) { 
             console.log(eventName+": "+payload); 
             }); 
+
+        // Error handling listener 
+        // Subscribe to error event 
+        player.subscribe("paused", "test-plugin", function(eventName, payload) { 
+            console.log(eventName+": "+payload); 
+            var $playHeadTime = player.getPlayheadTime();
+
+            if($globalTime == "" || $globalTime != $playHeadTime) {
+                $globalTime = $playHeadTime;
+                console.log("Now only i ll write"); 
+            var $contentId = player.getEmbedCode();
+            console.log("playHeadTime "+$playHeadTime); 
+            console.log("contentId "+$contentId); 
+            //window.pausedElement.value = "This is the changed value";
+            //window.pausedElement.change();
+            //console.log("value is set in the paused element");
+
+            window.metadataElement.innerHTML += "<div class=\"input-group\"><div class=\"input-group-addon\">"+$playHeadTime+"</div><input class=\"form-control\" type=\"text\" ng-model=\"contentTitle\" ><div class=\"input-group-addon\">Add</div></div>"; 
+
+            /*var jsonString = "{\""+$playHeadTime+"\" : "+"\"the slow motion starts here\" , \"assetid\" : \""+$contentId+"\"}";
+            console.log("jsonString "+jsonString); 
+            //JSON.stringify(jsonString)
+            addMetaData(jsonString);
+            //$scope.sayHello();*/
+             }
+            });
+            
         
         // Buffer listener 
         // Need to subscribe to an event if you want updates for the length of the buffer. 
@@ -48,6 +76,7 @@
         window.bufferElement = getElement('buffer'); 
         window.bitrateElement = getElement('bitrate'); 
         window.metadataElement = getElement('metadata'); 
+        window.pausedElement = getElement('paused');
         
         /* OO.ready(function() { 
             // Surround everything with OO.ready to make sure the script has 
@@ -57,3 +86,36 @@
                 // Instead of calling object.play it is easier (and more robust) to set autoplay here 
                 }); 
             }); */
+
+      /*  function addMetaData(metadata) {
+            console.log("in addmetadata method .try to add to server");
+        $.post( "/rest/metadata", function(metadata) {
+          alert( "success" );
+        })
+          .done(function() {
+            alert( "second success" );
+          })
+          .fail(function() {
+            alert( "error" );
+          })
+          .always(function() {
+            alert( "finished" );
+        })
+      }*/
+
+
+       /* function addMetaData(jsonString) {
+            console.log("in addmetadata method .try to add to server");
+              $.ajax({
+                url: '/rest/metadata',
+                type: 'PUT',
+                data: jsonString ,
+                contentType: 'application/text;',
+                success: function (response) {
+                    console.log("success");
+                },
+                error: function () {
+                    console.log("failure");
+                }
+            });
+          }*/

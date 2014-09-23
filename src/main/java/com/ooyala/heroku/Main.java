@@ -4,6 +4,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 import com.ooyala.resources.OoAsset;
+import com.ooyala.resources.OoMetaData;
 
 
 
@@ -29,7 +30,10 @@ public class Main {
     	/*OoAsset asset = new OoAsset();
     	Object response = asset.UpdateAssetName("{\"name\":\"changednamed\"}");
     	System.out.println(response.toString());*/
-    	
+
+    	/*OoMetaData metadata = new OoMetaData();
+    	Object response = metadata.addMetaData("{\"0:00\":\"starting frame\",\"assetid\":\"ZhYWRtcDo4KyJ3RsGsNvAfBhLamLfJnr\"}");
+    	System.out.println(response.toString());*/
     	
         // The port that we should run on can be set into an environment variable
         // Look for that variable and default to 8080 if it isn't there.

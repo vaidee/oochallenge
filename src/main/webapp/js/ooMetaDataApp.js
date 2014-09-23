@@ -1,5 +1,24 @@
 var ooMetaDataApp = angular.module('ooMetaDataApp',[]);
 
+/*ooMetaDataApp.directive( 'whenPaused', function () {
+  $log.debug("the directive is formed");
+    return {
+        scope: true,
+        link: function ( scope, element, attrs ) {
+            scope.$on( '$scope.pausedValue', function () {
+
+               
+                if ( $location.path() == element.attr( 'href' ) ) { 
+                    element.addClass( 'active' );
+                }
+                else {
+                    element.removeClass( 'active' );
+                }
+            });
+        }
+    };
+});*/
+
 ooMetaDataApp.controller('playerCtrl', function($scope, $http,$log) {
 
        $log.debug('This is the playerCtrl ctrl');
@@ -21,9 +40,27 @@ ooMetaDataApp.controller('playerCtrl', function($scope, $http,$log) {
       };
 
 
+     $scope.sayHello = function() {
+       $log.debug('Hi Hello How are you');
+     };
+
+
+      
+
+     $scope.listenToPlayer = function() {
+        // Error handling listener 
+        // Subscribe to error event 
+        player.subscribe("paused", "test-plugin", function(eventName, payload) { 
+            console.log(eventName+": "+payload); 
+            var playHeadTime = player.getPlayheadTime();
+            $scope.sayHello();
+            }); 
+      }
+
      $scope.loadVideo = function(name,description,contentId) {
 
       playVideo(contentId);
+      //player.setEmbedcode(contentId);
       $scope.contentTitle = name;
       $scope.description =description;
       $scope.contentId = contentId;
@@ -83,6 +120,25 @@ ooMetaDataApp.controller('playerCtrl', function($scope, $http,$log) {
 
       getPlayersList();
       getAssetsList();
+
+      $scope.pausedValue = "this is value";
+
+      $scope.test = function() {
+        alert('pausedValue changed *****');
+      };
+
+      /*$scope.$watch('pausedValue', function() { 
+         alert('pausedValue changed *****');
+      });*/
+      //$scope.pausedValue = false;
+
+   /*$scope.myVar = 1;
+
+   $scope.$watch('myVar', function() {
+       alert('hey, myVar has changed!');
+   });   
+
+   $scope.myVar = 2;   */
 
 });
 
