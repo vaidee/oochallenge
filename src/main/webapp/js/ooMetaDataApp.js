@@ -64,6 +64,7 @@ ooMetaDataApp.controller('playerCtrl', function($scope, $http,$log) {
       $scope.contentTitle = name;
       $scope.description =description;
       $scope.contentId = contentId;
+      $("html, body").animate({ scrollTop: 0 }, "slow");
 
      };
 
