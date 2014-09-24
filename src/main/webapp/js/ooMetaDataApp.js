@@ -9,8 +9,8 @@ function configFunction($routeProvider,$logProvider,$locationProvider) {
    templateUrl:'videos.html'
    //controller: 'playerCtrl'
  })
-  .when('/audios',{
-   templateUrl:'audios.html'
+  .when('/',{
+   templateUrl:'videos.html'
    //controller: 'playerCtrl'
  })
   .when('/challenge',{
