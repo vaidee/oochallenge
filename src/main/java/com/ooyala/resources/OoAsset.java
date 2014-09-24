@@ -48,7 +48,9 @@ public class OoAsset {
     	try {
     	String requestPath = "/assets";
     	HashMap<String, String> parameters = new HashMap<String, String>();
-    	response = ooyalaapi.sendRequest("GET", requestPath);
+    	parameters.put("where", "labels INCLUDES 'vaivideos'");  
+    	response = ooyalaapi.getRequest(requestPath,parameters);
+    	//response = ooyalaapi.sendRequest("GET", requestPath);
     	} catch (ClientProtocolException e) {
     		System.out.println("ClientProtocolException occured");
     	} catch (NoSuchAlgorithmException e) {
@@ -56,7 +58,7 @@ public class OoAsset {
     	} catch (IOException e) {
     		System.out.println("IOException occured");
     	} catch (HttpStatusCodeException e) {
-    		System.out.println("HttpStatusCodeException occured");
+    		System.out.println("HttpStatusCodeException occured"+e.getMessage());
     	}
     	
     	System.out.println("response is " + response.toString());

@@ -1,23 +1,24 @@
-var ooMetaDataApp = angular.module('ooMetaDataApp',[]);
+var ooMetaDataApp = angular.module('ooMetaDataApp',['ngRoute']);
 
-/*ooMetaDataApp.directive( 'whenPaused', function () {
-  $log.debug("the directive is formed");
-    return {
-        scope: true,
-        link: function ( scope, element, attrs ) {
-            scope.$on( '$scope.pausedValue', function () {
 
-               
-                if ( $location.path() == element.attr( 'href' ) ) { 
-                    element.addClass( 'active' );
-                }
-                else {
-                    element.removeClass( 'active' );
-                }
-            });
-        }
-    };
-});*/
+ooMetaDataApp.config(configFunction);
+
+function configFunction($routeProvider,$logProvider,$locationProvider) {
+  $logProvider.debugEnabled(true);
+  $routeProvider.when('/videos',{
+   templateUrl:'videos.html'
+   //controller: 'playerCtrl'
+ })
+  .when('/audios',{
+   templateUrl:'audios.html'
+   //controller: 'playerCtrl'
+ })
+  .when('/challenge',{
+   templateUrl:'challenge.html'
+   //controller: 'playerCtrl'
+ });
+};
+
 
 ooMetaDataApp.controller('playerCtrl', function($scope, $http,$log) {
 
@@ -65,7 +66,7 @@ ooMetaDataApp.controller('playerCtrl', function($scope, $http,$log) {
       $scope.description =description;
       $scope.contentId = contentId;
       $("html, body").animate({ scrollTop: 0 }, "slow");
-
+      getCustomMetaData(contentId);
      };
 
      $scope.changeTitle = function(checked) {
@@ -86,7 +87,7 @@ ooMetaDataApp.controller('playerCtrl', function($scope, $http,$log) {
                playVideo($scope.contentId);
          });
           responsePromise.error(function(data, status, headers, config) {
-            alert("changing the titie method failed!");
+            console.log("changing the titie method failed!");
          }); 
       }; 
 
@@ -101,9 +102,58 @@ ooMetaDataApp.controller('playerCtrl', function($scope, $http,$log) {
                console.log("the list of players are retrieved"); 
          });
           responsePromise.error(function(data, status, headers, config) {
-            alert("getting players failed!");
+            console.log("getting players failed!");
          }); 
       }; 
+
+
+     $scope.updateCustomMetaData = function(){
+        $log.debug("updateCustomMetaData from server..");
+         /*var url = "/rest/metadata"; 
+         $scope.customMetaData.push({"assetid":assetid})
+         $log.debug("asset id added"+$scope.customMetaData);
+         var responsePromise = $http.put(url,$scope.customMetaData);
+         responsePromise.success(function(dataFromServer, status, headers, config) {
+               console.log(dataFromServer);
+               console.log("the custom metadata updated"); 
+         });
+          responsePromise.error(function(data, status, headers, config) {
+            console.log("updating metadata failed!");
+         }); */
+      };    
+
+
+     function getCustomMetaData(assetid) {
+        metadataPresent.innerHTML = "";
+        metadataElement.innerHTML = "";
+        $log.debug("getCustomMetaData from server..");
+         var url = "/rest/metadata?assetId="+assetid; 
+         var responsePromise = $http.get(url);
+         responsePromise.success(function(dataFromServer, status, headers, config) {
+               console.log(dataFromServer);
+               $scope.customMetaData = dataFromServer;
+
+                //var values = {name: 'misko', gender: 'male'};
+                //var log = [];
+                angular.forEach($scope.customMetaData, function(value, key) {
+                  console.log("key & value"+value+key); 
+                   metadataPresent.innerHTML += "<div class=\"input-group\">"+
+                   "<div class=\"input-group-addon\">"+
+                   "<a href='javascript:player.setPlayheadTime("+key+");'>"+key+"</a>"+
+                   "</div>"+
+                   "<input class=\"form-control\" type=\"text\" value=\""+value+"\" readonly>"+
+                   "<div class=\"input-group-addon\">"+
+                   "<a href='javascript:player.setPlayheadTime("+key+");'>play</a>"+
+                   "</div>"+
+                   "</div>";                  
+                  });
+
+               console.log("the custom metadata retrieved"); 
+         });
+          responsePromise.error(function(data, status, headers, config) {
+            console.log("getting metadata failed!");
+         }); 
+      };       
 
      function getAssetsList() {
         $log.debug("getting the assets from server..");
@@ -115,31 +165,12 @@ ooMetaDataApp.controller('playerCtrl', function($scope, $http,$log) {
                console.log("the list of assets are retrieved");
          });
           responsePromise.error(function(data, status, headers, config) {
-            alert("getting assets failed!");
+            console.log("getting assets failed!");
          }); 
       };       
 
       getPlayersList();
       getAssetsList();
-
-      $scope.pausedValue = "this is value";
-
-      $scope.test = function() {
-        alert('pausedValue changed *****');
-      };
-
-      /*$scope.$watch('pausedValue', function() { 
-         alert('pausedValue changed *****');
-      });*/
-      //$scope.pausedValue = false;
-
-   /*$scope.myVar = 1;
-
-   $scope.$watch('myVar', function() {
-       alert('hey, myVar has changed!');
-   });   
-
-   $scope.myVar = 2;   */
-
+      //$scope.loadVideo("Countdown","Countdown","VhZ3lucDo-mk1iZ5xD_knjYM2aPe_YAG");
 });
 

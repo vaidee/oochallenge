@@ -11,6 +11,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.http.client.ClientProtocolException;
@@ -25,6 +26,41 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 @Path("metadata")
 public class OoMetaData {
+
+	
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    //@QueryParam(value = "test") assetId
+    public Object getCustomMetadata(@QueryParam("assetId") String assetId) {
+    	
+    	JSONObject jsonresponse = null;
+    	//String contentId = assetId;
+    	Object response = null;
+    	OoyalaAPI ooyalaapi = null;
+    	ooyalaapi = new OoyalaAPI("NoNTgyOnzfsCuyuMHS3_U_x9R8Jy.T9zcm","rqyh7up7Cy6E8c8y9PFZbzh-gtzNm0eZ-YUvukM7"); 
+    	
+    	try {
+    	String requestPath = "/assets/"+assetId+"/metadata";
+    	System.out.println("assetid"+assetId);
+    	//HashMap<String, String> parameters = new HashMap<String, String>();
+    	//parameters.put("where", "labels INCLUDES 'vaivideos'");  
+    	response = ooyalaapi.getRequest(requestPath);
+    	//response = ooyalaapi.sendRequest("GET", requestPath);
+    	} catch (ClientProtocolException e) {
+    		System.out.println("ClientProtocolException occured");
+    	} catch (NoSuchAlgorithmException e) {
+    		System.out.println("NoSuchAlgorithmException occured");
+    	} catch (IOException e) {
+    		System.out.println("IOException occured");
+    	} catch (HttpStatusCodeException e) {
+    		System.out.println("HttpStatusCodeException occured"+e.getMessage());
+    	}
+    	
+    	System.out.println("response is " + response.toString());
+    	//jsonresponse.
+        return response;
+    } 	
+	
 	
     @PUT
     @Produces(MediaType.APPLICATION_JSON)

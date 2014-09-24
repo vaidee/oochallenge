@@ -1,4 +1,6 @@
     function getElement(id) { return document.querySelector('#'+id); } 
+    function playFromHere(key) { console.log("playfromhere");player.setPlayheadTime(key);}
+    window.bufferLength = -100; 
     var $globalTime = "";
     function onCreate(player) { 
         // Everything you do with the player should be done either in onCreate 
@@ -32,7 +34,17 @@
             //window.pausedElement.change();
             //console.log("value is set in the paused element");
 
-            window.metadataElement.innerHTML += "<div class=\"input-group\"><div class=\"input-group-addon\">"+$playHeadTime+"</div><input class=\"form-control\" type=\"text\" ng-model=\"contentTitle\" ><div class=\"input-group-addon\">Add</div></div>"; 
+            //window.metadataElement.innerHTML += "<div class=\"input-group\"><div class=\"input-group-addon\">"+$playHeadTime+"</div><input class=\"form-control\" type=\"text\" ng-model=\"contentTitle\" ><div class=\"input-group-addon\">Add</div></div>"; 
+            
+            window.metadataElement.innerHTML += "<div class=\"input-group\">"+
+                   "<div class=\"input-group-addon\">"+
+                   "<a href='javascript:player.setPlayheadTime("+$playHeadTime+");'>"+$playHeadTime+"</a>"+
+                   "</div>"+
+                   "<input class=\"form-control\" type=\"text\">"+
+                   "<div class=\"input-group-addon\">"+
+                   "<a ng-click='updateCustomMetaData()'>add</a>"+
+                   "</div>"+
+                   "</div>";   
 
             /*var jsonString = "{\""+$playHeadTime+"\" : "+"\"the slow motion starts here\" , \"assetid\" : \""+$contentId+"\"}";
             console.log("jsonString "+jsonString); 
@@ -68,15 +80,20 @@
         // Content information is available after contentTreeFetched, but it is best to wait until 
         // playbackReady for duration. 
         player.subscribe('playbackReady', 'myPage', function(eventName) { 
-            window.metadataElement.innerHTML += "Title is: " + player.getTitle() + "<br/>"; 
+            /*window.metadataElement.innerHTML += "Title is: " + player.getTitle() + "<br/>"; 
             window.metadataElement.innerHTML += "Description is: " + player.getDescription() + "<br/>"; 
-            window.metadataElement.innerHTML += "Duration is: " + player.getDuration() + "<br/>"; 
+            window.metadataElement.innerHTML += "Duration is: " + player.getDuration() + "<br/>"; */
             }); 
-        } 
+
+
+
         window.bufferElement = getElement('buffer'); 
         window.bitrateElement = getElement('bitrate'); 
         window.metadataElement = getElement('metadata'); 
-        window.pausedElement = getElement('paused');
+        window.metadataPresent = getElement('metadataPresent');
+
+        } 
+
         
         /* OO.ready(function() { 
             // Surround everything with OO.ready to make sure the script has 

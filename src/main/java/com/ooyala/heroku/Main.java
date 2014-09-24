@@ -26,6 +26,11 @@ public class Main {
         System.out.println("main method **");
         System.out.println(lastmovie.getLastMovie());
         System.out.println(oplayer.getAllPlayers());*/
+
+    	/*OoMetaData metadata = new OoMetaData();
+    	Object response = metadata.getCustomMetadata("VhZ3lucDo-mk1iZ5xD_knjYM2aPe_YAG");
+    	System.out.println(response.toString());*/
+    	
     	
     	/*OoAsset asset = new OoAsset();
     	Object response = asset.UpdateAssetName("{\"name\":\"changednamed\"}");
@@ -34,6 +39,7 @@ public class Main {
     	/*OoMetaData metadata = new OoMetaData();
     	Object response = metadata.addMetaData("{\"0:00\":\"starting frame\",\"assetid\":\"ZhYWRtcDo4KyJ3RsGsNvAfBhLamLfJnr\"}");
     	System.out.println(response.toString());*/
+    	
     	
         // The port that we should run on can be set into an environment variable
         // Look for that variable and default to 8080 if it isn't there.

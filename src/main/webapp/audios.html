@@ -24,21 +24,10 @@
             <div id='playerwrapper' draggable="true" style='width: 620px; height: 400px; border:2px solid black'></div>
             
              
-            <hr>
-            Pause the video & add a metadata about the current frame 
-            <div id='metadata'>
-            </div>
-            <hr>
-            Below are the list of already available metadata.<br>
-            Click on the playHeadTime to play the video on the particular metadata</br>
 
-            <div id='metadataPresent'>               
+            <div id='metadata'>
+                <br/>
             </div>
-            <br/>
-         
-            <!-- <div ng-model="customMetaData">{{customMetaData}}
-            </div> -->
-            
             <div id='bitrate' ng-hide="true">
                 -- Bitrate --<br />
             </div>
@@ -57,8 +46,13 @@
             <div class="videos" ng-repeat="item in assets.items">
                 <div class="thumbnail" ng-click="selectContent(item.embed_code)">
                     <img src="{{item.preview_image_url}}" ng-click="loadVideo(item.name,item.description,item.embed_code)">
-                    <div ng-hide="false" class="caption">
-                        <p>Original Name :{{item.original_file_name}}</p>
+                    <div ng-hide="true" class="caption">
+                        <h3>{{item.name}}</h3>
+                        <p>{{item.description}}</p>
+                        <p>
+                            <button class="btn btn-primary" ng-click="loadVideo(item.name,item.description,item.embed_code)">Play Now!</button> 
+                            <button class="btn btn-primary" ng-click="destroyVideo()">Stop Now!</button>
+                        </p>
                     </div>
                 </div>
             </div>

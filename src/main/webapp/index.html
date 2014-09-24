@@ -15,7 +15,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/full-width-pics.css" rel="stylesheet">
+    <link href="css/ooMetaDataApp.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,34 +23,59 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+        <script src="js/angular.js"></script>
+        <script src="js/angular-route.js"></script>
+            <!-- script src='/mymodule.js'></script -->  
+        <!-- angular app js -->
+    <script src="js/ooMetaDataApp.js"></script>
+    <!-- Load Ooyala Player -->
+    <!-- Put the <script> call in the head so the Player is there when the page loads. -->
+    <!-- Player query string parameters are added on the line below. -->
+    <!-- <script src='http://player.ooyala.com/v3/602ba758637949d7a3d98a871626e659'></script> -->
+      <script src='http://player.ooyala.com/v3/6ee552773e32436f95ce3310c04b33b4'></script> 
+    
+    <!-- Load additional custom modules --> 
 
 </head>
 
-<body>
+<body ng-app="ooMetaDataApp">
 
-    <!-- Full Width Image Header with Logo -->
-    <!-- Image backgrounds are set within the full-width-pics.css file. -->
-    <!-- <header class="image-bg-fluid-height">
-        <img class="img-responsive img-center" src="http://www.dreamworksanimation.com/media/insidedwa/tech/tech_header.jpg" alt="">
-    </header> -->
-
-    <!-- Content Section -->
-    <section>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="section-heading">Ooyala Code Challenge</h1>
-                    <p class="lead section-lead">Its fun ... </p><p class="lead section-lead">challenge taken by <a href="http://in.linkedin.com/pub/vaidees-waran/23/613/a18">Vaidee</a></p>
-                    <br>
-                    <p class="section-paragraph">Below are list of features that are implemented in this web application.</p>
-                    <a href="videos.html">Videos</a>
-                    
-                </div>
-
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Vai Metadata App</a>
             </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#videos">Videos</a>
+                    </li>
+                    <li>
+                        <a href="#audios">Audios</a>
+                    </li>
+                    <li>
+                        <a href="#challenge">Challenge</a>
+                    </li>                    
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-    </section>
-
+        <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <!-- <div class="container" ng-controller="playerCtrl"> -->
+    <div ng-view></div>
+    </div>
+    <!-- /.container -->
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -68,7 +93,11 @@
     <script src="js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script> 
+
+            <!-- Ooyala player JavaScript -->
+        <script src="js/playerevents.js"></script>
+
 
 </body>
 
